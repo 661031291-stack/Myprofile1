@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Profile</title>
+
+  <style>
+
+    /* =========================
+       ตั้งค่าพื้นฐาน
+    ========================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Tahoma", "Arial", sans-serif;
+    }
+
+    body {
+      background: #eef2f7;
+      color: #222;
+      padding: 20px;
+    }
+
+    .website {
+      max-width: 1100px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+
+    /* =========================
+       เมนูด้านบน
+    ========================== */
+
+    nav {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      background: #ffffff;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #314bd5;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #222;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #6b54e8;
+    }
+
+
+    /* =========================
+       ส่วนโปรไฟล์ด้านบน
+    ========================== */
+
+    .hero {
+      background: linear-gradient(
+        120deg,
+        #9567e9,
+        #2587f3
+      );
+
+      min-height: 230px;
+
+      padding: 30px 70px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 45px;
+
+      color: white;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    /* ดาวตกแต่งพื้นหลัง */
+
+    .hero::before,
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(255,255,255,0.15);
+      font-size: 55px;
+    }
+
+    .hero::before {
+      right: 120px;
+      top: 25px;
+    }
+
+    .hero::after {
+      right: 50px;
+      bottom: 25px;
+    }
+
+
+    /* =========================
+       รูปโปรไฟล์
+       ปรับขนาดตรงนี้
+    ========================== */
+
+    .profile-img {
+
+      /* ขนาดรูปโปรไฟล์ */
+      width: 150px;
+      height: 150px;
+
+      /* ทำให้เป็นวงกลม */
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      /* ขอบสีขาว */
+      border: 6px solid rgba(255,255,255,0.9);
+
+      box-shadow:
+        0 6px 15px rgba(0,0,0,0.20);
+
+      flex-shrink: 0;
+    }
+
+
+    /* รูปภาพด้านในวงกลม */
+
+    .profile-img img {
+
+      width: 100%;
+      height: 100%;
+
+      /* ป้องกันรูปยืด */
+      object-fit: cover;
+
+      /* ตำแหน่งรูป */
+      object-position: center;
+    }
+
+
+    /* =========================
+       ข้อความโปรไฟล์
+    ========================== */
+
+    .profile-text h1 {
+      font-size: 34px;
+      margin-bottom: 5px;
+    }
+
+    .profile-text h2 {
+      font-size: 21px;
+      font-weight: 500;
+      margin-bottom: 13px;
+    }
+
+    .line {
+      width: 75px;
+      height: 3px;
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 13px;
+    }
+
+    .profile-text p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.95);
+    }
+
+
+    /* =========================
+       กล่องข้อมูล 3 ช่อง
+    ========================== */
+
+    .information {
+
+      padding: 20px 25px 10px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+
+    .card {
+
+      background: #ffffff;
+
+      border: 1px solid #e2e6ee;
+
+      border-radius: 12px;
+
+      padding: 20px;
+
+      min-height: 220px;
+
+      box-shadow:
+        0 3px 10px rgba(0,0,0,0.04);
+    }
+
+
+    /* หัวข้อกล่อง */
+
+    .card-title {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 17px;
+
+      font-size: 19px;
+
+      font-weight: bold;
+    }
+
+
+    /* Icon */
+
+    .icon {
+
+      width: 32px;
+
+      height: 32px;
+
+      border-radius: 8px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      font-size: 18px;
+    }
+
+
+    .about-icon {
+      background: #fff3c4;
+    }
+
+    .skill-icon {
+      background: #fff0b4;
+    }
+
+    .hobby-icon {
+      background: #d8f8dd;
+    }
+
+
+    /* รายการ */
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card ul li {
+
+      margin: 10px 0;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+    }
+
+
+    /* เกี่ยวกับฉัน */
+
+    .about li span {
+
+      display: inline-block;
+
+      width: 27px;
+    }
+
+
+    /* ความสามารถ */
+
+    .skills li::before {
+
+      content: "✦";
+
+      color: #f08ac3;
+
+      margin-right: 10px;
+    }
+
+
+    /* งานอดิเรก */
+
+    .hobbies li {
+
+      display: flex;
+
+      gap: 10px;
+
+      align-items: center;
+    }
+
+
+    /* =========================
+       Social Media
+    ========================== */
+
+    .social-section {
+
+      margin: 5px 25px 20px;
+
+      padding: 17px 20px;
+
+      border: 1px solid #e2e6ee;
+
+      border-radius: 12px;
+    }
+
+
+    .social-section h3 {
+
+      font-size: 16px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .social-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+
+    .social-item {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
+    /* Social Icon */
+
+    .social-icon {
+
+      width: 38px;
+
+      height: 38px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: white;
+
+      font-size: 18px;
+
+      font-weight: bold;
+    }
+
+
+    .instagram {
+
+      background:
+        linear-gradient(
+          135deg,
+          #f6b33a,
+          #e22a84,
+          #673ab7
+        );
+    }
+
+
+    .facebook {
+      background: #1877f2;
+    }
+
+
+    .twitter {
+      background: #1da1f2;
+    }
+
+
+    .github {
+      background: #111;
+    }
+
+
+    /* =========================
+       Footer
+    ========================== */
+
+    footer {
+
+      background:
+        linear-gradient(
+          90deg,
+          #2240da,
+          #355ce8
+        );
+
+      color: white;
+
+      text-align: center;
+
+      padding: 14px;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       รองรับ Tablet
+    ========================== */
+
+    @media (max-width: 850px) {
+
+      nav {
+
+        padding: 0 20px;
+
+      }
+
+
+      nav ul {
+
+        gap: 15px;
+
+      }
+
+
+      .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 30px 20px;
+
+        gap: 20px;
+
+      }
+
+
+      /* รูปบน Tablet */
+
+      .profile-img {
+
+        width: 140px;
+
+        height: 140px;
+
+      }
+
+
+      .profile-text h1 {
+
+        font-size: 30px;
+
+      }
+
+
+      .line {
+
+        margin:
+          12px auto;
+
+      }
+
+
+      .information {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .social-list {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+    }
+
+
+    /* =========================
+       รองรับมือถือ
+    ========================== */
+
+    @media (max-width: 520px) {
+
+      body {
+
+        padding: 0;
+
+      }
+
+
+      .website {
+
+        border-radius: 0;
+
+      }
+
+
+      nav {
+
+        height: auto;
+
+        flex-direction: column;
+
+        padding: 15px;
+
+        gap: 15px;
+
+      }
+
+
+      nav ul {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+      }
+
+
+      .hero {
+
+        padding:
+          25px 15px;
+
+      }
+
+
+      /* รูปบนมือถือ */
+
+      .profile-img {
+
+        width: 120px;
+
+        height: 120px;
+
+        border-width: 5px;
+
+      }
+
+
+      .profile-text h1 {
+
+        font-size: 27px;
+
+      }
+
+
+      .profile-text h2 {
+
+        font-size: 18px;
+
+      }
+
+
+      .profile-text p {
+
+        font-size: 14px;
+
+      }
+
+
+      .social-list {
+
+        grid-template-columns: 1fr;
+
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<div class="website">
+
+
+  <!-- =====================
+       เมนู
+  ====================== -->
+
+  <nav>
+
+    <div class="logo">
+      My Profile
+    </div>
+
+
+    <ul>
+
+      <li>
+        <a href="home.html">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="hobbies.html">
+          Hobbies
+        </a>
+      </li>
+
+      <li>
+        <a href="contact.html">
+          Contact
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+
+  <!-- =====================
+       Profile
+  ====================== -->
+
+  <section
+    class="hero"
+    id="home"
+  >
+
+
+    <!-- รูปโปรไฟล์ -->
+
+    <div class="profile-img">
+
+      <img
+        src="Att.jpg"
+        alt="Profile"
+      >
+
+    </div>
+
+
+
+    <!-- ข้อมูลโปรไฟล์ -->
+
+    <div class="profile-text">
+
+
+      <h1>
+        อาทิตย์ แก้วสุกใส
+      </h1>
+
+
+      <h2>
+        Arthit Kaewsuksai
+      </h2>
+
+
+      <div class="line"></div>
+
+
+      <p>
+
+        นิสิตคณะศึกษาศาสตร์
+
+        <br>
+
+        สาขาเทคโนโลยีและสื่อสารการศึกษา
+
+        <br>
+
+        ผู้ชื่นชอบเทคโนโลยี การออกแบบ
+
+        <br>
+
+        และการสร้างสรรค์สื่อการเรียนรู้ 💜
+
+      </p>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================
+       ข้อมูล
+  ====================== -->
+
+  <section
+    class="information"
+    id="about"
+  >
+
+
+    <!-- เกี่ยวกับฉัน -->
+
+    <div class="card">
+
+
+      <div class="card-title">
+
+        <div
+          class="icon about-icon"
+        >
+          👤
+        </div>
+
+        เกี่ยวกับฉัน
+
+      </div>
+
+
+
+      <ul class="about">
+
+
+        <li>
+          <span>👨</span>
+          อายุ : 23 ปี
+        </li>
+
+
+        <li>
+          <span>🎂</span>
+          วันเกิด : 12 มกราคม 2546
+        </li>
+
+
+        <li>
+          <span>🏫</span>
+          มหาวิทยาลัยทักษิณ
+        </li>
+
+
+        <li>
+          <span>📚</span>
+          คณะ : ศึกษาศาสตร์
+        </li>
+
+
+        <li>
+          <span>🎓</span>
+          สาขา : เทคโนโลยีและสื่อสารการศึกษา
+        </li>
+
+
+        <li>
+          <span>📧</span>
+          Email : arthit12012546@email.com
+        </li>
+
+        <li>
+          <span>📧</span>
+          โทร : 0630809055
+        </li>
+
+
+      </ul>
+
+
+    </div>
+
+
+
+    <!-- =====================
+         ความสามารถ
+    ====================== -->
+
+    <div class="card">
+
+
+      <div class="card-title">
+
+        <div
+          class="icon skill-icon"
+        >
+          ⭐
+        </div>
+
+        ความสามารถ
+
+      </div>
+
+
+      <ul class="skills">
+
+
+        <li>
+          การออกแบบสื่อการเรียนรู้
+        </li>
+
+
+        <li>
+          การทำสื่อดิจิทัล
+        </li>
+
+
+        <li>
+          การใช้งานโปรแกรมกราฟิก
+        </li>
+
+
+        <li>
+          การใช้ AI เพื่อการศึกษา
+        </li>
+
+
+        <li>
+          การสร้างสื่อมัลติมีเดีย
+        </li>
+
+
+      </ul>
+
+
+    </div>
+
+
+
+    <!-- =====================
+         งานอดิเรก
+    ====================== -->
+
+    <div
+      class="card"
+      id="hobbies"
+    >
+
+
+      <div class="card-title">
+
+        <div
+          class="icon hobby-icon"
+        >
+          ✅
+        </div>
+
+        งานอดิเรก
+
+      </div>
+
+
+      <ul class="hobbies">
+
+
+        <li>
+          🎧 ฟังเพลง
+        </li>
+
+
+        <li>
+          🌱 ปลูกต้นไม้
+        </li>
+
+
+        <li>
+          💻 ใช้งานคอมพิวเตอร์
+        </li>
+
+
+        <li>
+          🎨 ออกแบบกราฟิก
+        </li>
+
+
+        <li>
+          📚 เรียนรู้สิ่งใหม่ ๆ
+        </li>
+
+
+      </ul>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================
+       Social Media
+  ====================== -->
+
+  <section
+    class="social-section"
+    id="contact"
+  >
+
+
+    <h3>
+      Social Media
+    </h3>
+
+
+    <div class="social-list">
+
+
+      <!-- Instagram -->
+
+      <div class="social-item">
+
+        <div
+          class="social-icon instagram"
+        >
+          ◎
+        </div>
+
+        p_arthit
+
+      </div>
+
+
+
+      <!-- Facebook -->
+
+      <div class="social-item">
+
+        <div
+          class="social-icon facebook"
+        >
+          f
+        </div>
+
+        Arthit Kaewsuksai
+
+      </div>
+
+
+
+      <!-- Twitter -->
+
+      <div class="social-item">
+
+        <div
+          class="social-icon twitter"
+        >
+          ♥
+        </div>
+
+        @arthit
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================
+       Footer
+  ====================== -->
+
+  <footer>
+
+    © 2026 My Profile Website |
+    All rights reserved.
+
+  </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

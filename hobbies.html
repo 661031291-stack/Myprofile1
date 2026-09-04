@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hobbies | My Profile</title>
+
+    <style>
+
+        /* =========================
+           ตั้งค่าพื้นฐาน
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Tahoma", "Arial", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+        nav {
+            width: 100%;
+            height: 70px;
+
+            background: #ffffff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 8%;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3855d9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+
+            color: #333;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #536dfe;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+        .page-header {
+
+            background: linear-gradient(
+                120deg,
+                #9366e9 0%,
+                #596fe8 50%,
+                #2589f3 100%
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 55px 20px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* วงกลมตกแต่ง */
+
+        .page-header::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.07);
+
+            top: -100px;
+            right: 10%;
+        }
+
+
+        .page-header::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.05);
+
+            bottom: -70px;
+            left: 10%;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 8px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .page-header p {
+
+            font-size: 15px;
+
+            color: rgba(255,255,255,0.90);
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =========================
+           HOBBIES SECTION
+        ========================= */
+
+        .hobbies-section {
+
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 50px 25px;
+        }
+
+
+        /* หัวข้อ */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+
+            font-size: 28px;
+
+            color: #344ac5;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+
+            font-size: 14px;
+
+            color: #777;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           HOBBY GRID
+        ========================= */
+
+        .hobby-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================
+           HOBBY CARD
+        ========================= */
+
+        .hobby-card {
+
+            background: #ffffff;
+
+            border: 1px solid #e8eaf2;
+
+            border-radius: 18px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+
+        .hobby-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 12px 28px rgba(0,0,0,0.10);
+        }
+
+
+        /* Icon */
+
+        .hobby-icon {
+
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 22px;
+
+            font-size: 38px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f0eaff,
+                    #e7f2ff
+                );
+        }
+
+
+        .hobby-card h3 {
+
+            font-size: 19px;
+
+            color: #4054cc;
+
+            margin-bottom: 10px;
+        }
+
+
+        .hobby-card p {
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           FAVORITE SECTION
+        ========================= */
+
+        .favorite-section {
+
+            margin-top: 40px;
+
+            background: linear-gradient(
+                120deg,
+                #f7f4ff,
+                #f2f7ff
+            );
+
+            border: 1px solid #e5e7f3;
+
+            border-radius: 20px;
+
+            padding: 35px;
+        }
+
+
+        .favorite-title {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .favorite-title h2 {
+
+            color: #344ac5;
+
+            font-size: 24px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .favorite-title p {
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           Favorite Items
+        ========================= */
+
+        .favorite-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .favorite-item {
+
+            background: #ffffff;
+
+            border-radius: 13px;
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.04);
+        }
+
+
+        .favorite-icon {
+
+            width: 45px;
+            height: 45px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 12px;
+
+            background: #eef0ff;
+
+            font-size: 23px;
+        }
+
+
+        .favorite-text h3 {
+
+            font-size: 14px;
+
+            color: #333;
+
+            margin-bottom: 4px;
+        }
+
+
+        .favorite-text p {
+
+            font-size: 12px;
+
+            color: #777;
+        }
+
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote {
+
+            margin-top: 35px;
+
+            background: #ffffff;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            border-left: 5px solid #536dfe;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.04);
+        }
+
+
+        .quote p {
+
+            font-size: 16px;
+
+            color: #555;
+
+            line-height: 1.8;
+
+            font-style: italic;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #263fc6;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            padding: 18px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 18px;
+            }
+
+            .hobby-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .favorite-container {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 550px) {
+
+            nav {
+
+                height: auto;
+
+                flex-direction: column;
+
+                padding: 15px;
+
+                gap: 15px;
+            }
+
+
+            nav ul {
+
+                width: 100%;
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            nav ul li a {
+
+                font-size: 12px;
+            }
+
+
+            .page-header {
+
+                padding: 40px 15px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 30px;
+            }
+
+
+            .hobbies-section {
+
+                padding: 35px 15px;
+            }
+
+
+            .section-title h2 {
+
+                font-size: 24px;
+            }
+
+
+            .hobby-container {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .favorite-section {
+
+                padding: 25px 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        My Profile
+    </div>
+
+
+    <ul>
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="hobbies.html" class="active">
+                Hobbies
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<section class="page-header">
+
+    <h1>
+        🎨 My Hobbies
+    </h1>
+
+    <p>
+        งานอดิเรกและสิ่งที่ฉันชื่นชอบในเวลาว่าง
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     HOBBIES
+========================= -->
+
+<main class="hobbies-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            ✨ งานอดิเรกของฉัน
+        </h2>
+
+        <p>
+            กิจกรรมที่ฉันชื่นชอบและมักทำในเวลาว่าง
+            เพื่อพักผ่อน เรียนรู้ และพัฒนาทักษะใหม่ ๆ
+        </p>
+
+    </div>
+
+
+
+    <!-- กล่องงานอดิเรก -->
+
+    <section class="hobby-container">
+
+
+        <!-- ปลูกต้นไม้ -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                🌱
+            </div>
+
+            <h3>
+                ปลูกต้นไม้
+            </h3>
+
+            <p>
+                ฉันชอบปลูกและดูแลต้นไม้
+                เพราะเป็นกิจกรรมที่ช่วยให้รู้สึกผ่อนคลาย
+                และได้ใช้เวลาว่างให้เกิดประโยชน์
+            </p>
+
+        </div>
+
+
+
+        <!-- คอมพิวเตอร์ -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                💻
+            </div>
+
+            <h3>
+                คอมพิวเตอร์
+            </h3>
+
+            <p>
+                ชอบใช้งานคอมพิวเตอร์
+                ทดลองโปรแกรมและเครื่องมือใหม่ ๆ
+                รวมถึงศึกษาการสร้างเว็บไซต์
+                และเทคโนโลยีที่น่าสนใจ
+            </p>
+
+        </div>
+
+
+
+        <!-- ออกแบบ -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                🎨
+            </div>
+
+            <h3>
+                ออกแบบสื่อ
+            </h3>
+
+            <p>
+                สนุกกับการออกแบบภาพ
+                สื่อการเรียนรู้ และสื่อดิจิทัล
+                เพื่อให้ข้อมูลมีความสวยงาม
+                และเข้าใจได้ง่ายขึ้น
+            </p>
+
+        </div>
+
+
+
+        <!-- ฟังเพลง -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                🎧
+            </div>
+
+            <h3>
+                ฟังเพลง
+            </h3>
+
+            <p>
+                การฟังเพลงเป็นอีกหนึ่งกิจกรรม
+                ที่ช่วยสร้างความเพลิดเพลิน
+                และช่วยผ่อนคลายในเวลาว่าง
+            </p>
+
+        </div>
+
+
+
+        <!-- ถ่ายภาพ -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                📷
+            </div>
+
+            <h3>
+                ถ่ายภาพ
+            </h3>
+
+            <p>
+                ชอบบันทึกภาพบรรยากาศ
+                ธรรมชาติ และสิ่งต่าง ๆ รอบตัว
+                เพื่อเก็บเป็นความทรงจำ
+                และฝึกมุมมองด้านการออกแบบ
+            </p>
+
+        </div>
+
+
+
+        <!-- เรียนรู้ -->
+
+        <div class="hobby-card">
+
+            <div class="hobby-icon">
+                📚
+            </div>
+
+            <h3>
+                เรียนรู้สิ่งใหม่
+            </h3>
+
+            <p>
+                ชอบค้นคว้าและเรียนรู้
+                เทคโนโลยีใหม่ ๆ โดยเฉพาะ
+                เรื่องคอมพิวเตอร์ เว็บไซต์
+                AI และเทคโนโลยีเพื่อการศึกษา
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         สิ่งที่ชอบ
+    ========================== -->
+
+    <section class="favorite-section">
+
+
+        <div class="favorite-title">
+
+            <h2>
+                💜 สิ่งที่ฉันชื่นชอบ
+            </h2>
+
+            <p>
+                เรื่องเล็ก ๆ ที่ทำให้มีความสุข
+            </p>
+
+        </div>
+
+
+
+        <div class="favorite-container">
+
+
+            <!-- อาหาร -->
+
+            <div class="favorite-item">
+
+                <div class="favorite-icon">
+                    🍚
+                </div>
+
+                <div class="favorite-text">
+
+                    <h3>
+                        อาหารที่ชอบ
+                    </h3>
+
+                    <p>
+                        ข้าวผัด
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ผลไม้ -->
+
+            <div class="favorite-item">
+
+                <div class="favorite-icon">
+                    🍈
+                </div>
+
+                <div class="favorite-text">
+
+                    <h3>
+                        ผลไม้ที่ชอบ
+                    </h3>
+
+                    <p>
+                        ลำไย
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- เทคโนโลยี -->
+
+            <div class="favorite-item">
+
+                <div class="favorite-icon">
+                    🤖
+                </div>
+
+                <div class="favorite-text">
+
+                    <h3>
+                        สิ่งที่สนใจ
+                    </h3>
+
+                    <p>
+                        AI และเทคโนโลยี
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- คำคม -->
+
+    <div class="quote">
+
+        <p>
+            💡 “เวลาว่างคือโอกาสในการพักผ่อน
+            และเรียนรู้สิ่งใหม่ ๆ ไปพร้อมกัน”
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    © 2026 Arthit Kaewsuksai |
+    My Profile Website
+
+</footer>
+
+
+</body>
+</html>

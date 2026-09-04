@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home | My Profile</title>
+
+    <style>
+        /* =========================
+           ตั้งค่าพื้นฐาน
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Tahoma", "Arial", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+        nav {
+            width: 100%;
+            height: 70px;
+            background: #ffffff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 8%;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3855d9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #536dfe;
+        }
+
+
+        /* =========================
+           HERO / HOME
+        ========================= */
+        .home {
+            min-height: 570px;
+
+            background: linear-gradient(
+                120deg,
+                #9366e9 0%,
+                #596fe8 50%,
+                #2589f3 100%
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 60px 8%;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* วงกลมตกแต่งพื้นหลัง */
+        .home::before {
+            content: "";
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+
+            top: -120px;
+            right: -80px;
+        }
+
+        .home::after {
+            content: "";
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+
+            bottom: -100px;
+            left: -50px;
+        }
+
+
+        /* กล่องเนื้อหาหลัก */
+        .home-container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 70px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =========================
+           รูปโปรไฟล์
+        ========================= */
+        .profile-area {
+            flex: 0 0 280px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 210px;
+            height: 210px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            border: 7px solid rgba(255,255,255,0.9);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.20);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center;
+        }
+
+
+        /* =========================
+           ข้อความหน้า Home
+        ========================= */
+        .home-text {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .welcome {
+            display: inline-block;
+
+            background: rgba(255,255,255,0.18);
+
+            padding: 8px 18px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+        }
+
+        .home-text h1 {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+
+        .home-text h2 {
+            font-size: 25px;
+            font-weight: 500;
+
+            color: rgba(255,255,255,0.92);
+
+            margin-bottom: 20px;
+        }
+
+        .line {
+            width: 85px;
+            height: 4px;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            margin-bottom: 20px;
+        }
+
+        .home-text p {
+            max-width: 650px;
+
+            font-size: 16px;
+            line-height: 1.9;
+
+            color: rgba(255,255,255,0.92);
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================
+           ปุ่ม
+        ========================= */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-white {
+            background: #ffffff;
+            color: #5264dc;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.18);
+        }
+
+        .btn-outline {
+            color: #ffffff;
+
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           ข้อมูลสั้น ๆ
+        ========================= */
+        .quick-info {
+            background: #ffffff;
+            padding: 45px 8%;
+        }
+
+        .quick-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quick-title h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .quick-title p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .info-container {
+            max-width: 1050px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .info-card {
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid #e7e9f1;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.09);
+        }
+
+        .info-icon {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 15px;
+
+            background: #eef1ff;
+
+            font-size: 26px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+
+            color: #4054cc;
+
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            background: #263fc6;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            padding: 18px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+        @media (max-width: 850px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 18px;
+            }
+
+            .home {
+                padding: 50px 5%;
+            }
+
+            .home-container {
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 30px;
+            }
+
+            .profile-area {
+                flex: none;
+            }
+
+            .profile-image {
+                width: 170px;
+                height: 170px;
+            }
+
+            .home-text h1 {
+                font-size: 36px;
+            }
+
+            .line {
+                margin: 18px auto;
+            }
+
+            .home-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .info-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+        @media (max-width: 550px) {
+
+            nav {
+                height: auto;
+
+                flex-direction: column;
+
+                padding: 15px;
+
+                gap: 15px;
+            }
+
+            nav ul {
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 15px;
+
+                flex-wrap: wrap;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+            }
+
+            .home {
+                min-height: auto;
+
+                padding:
+                    45px 20px;
+            }
+
+            /* รูปโปรไฟล์บนมือถือ */
+            .profile-image {
+                width: 140px;
+                height: 140px;
+
+                border-width: 5px;
+            }
+
+            .home-text h1 {
+                font-size: 29px;
+            }
+
+            .home-text h2 {
+                font-size: 19px;
+            }
+
+            .home-text p {
+                font-size: 14px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .quick-info {
+                padding: 35px 20px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        My Profile
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="index.html" class="active">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="hobbies.html">
+                Hobbies
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="home">
+
+
+    <div class="home-container">
+
+
+        <!-- รูปโปรไฟล์ -->
+
+        <div class="profile-area">
+
+            <div class="profile-image">
+
+                <img
+                    src="Att.jpg"
+                    alt="รูปโปรไฟล์"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ข้อความ -->
+
+        <div class="home-text">
+
+
+            <div class="welcome">
+                👋 ยินดีต้อนรับสู่เว็บไซต์ของฉัน
+            </div>
+
+
+            <h1>
+                อาทิตย์ แก้วสุกใส
+            </h1>
+
+
+            <h2>
+                Arthit Kaewsuksai
+            </h2>
+
+
+            <div class="line"></div>
+
+
+            <p>
+                สวัสดีครับ ผมเป็นนิสิตคณะศึกษาศาสตร์
+                สาขาเทคโนโลยีและสื่อสารการศึกษา
+                มหาวิทยาลัยทักษิณ
+                มีความสนใจด้านเทคโนโลยีคอมพิวเตอร์
+                การออกแบบสื่อดิจิทัล
+                และการนำเทคโนโลยีมาประยุกต์ใช้
+                เพื่อสร้างสรรค์สื่อการเรียนรู้ที่น่าสนใจ
+                และเป็นประโยชน์ต่อการศึกษา
+            </p>
+
+
+            <div class="buttons">
+
+                <a
+                    href="about.html"
+                    class="btn btn-white"
+                >
+                    👤 รู้จักฉันเพิ่มเติม
+                </a>
+
+
+                <a
+                    href="contact.html"
+                    class="btn btn-outline"
+                >
+                    ✉ ติดต่อฉัน
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     QUICK INFORMATION
+========================= -->
+
+<section class="quick-info">
+
+
+    <div class="quick-title">
+
+        <h2>
+            เกี่ยวกับฉัน
+        </h2>
+
+        <p>
+            ข้อมูลสั้น ๆ เพื่อทำความรู้จักกันมากขึ้น
+        </p>
+
+    </div>
+
+
+
+    <div class="info-container">
+
+
+        <!-- การศึกษา -->
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🎓
+            </div>
+
+            <h3>
+                การศึกษา
+            </h3>
+
+            <p>
+                คณะศึกษาศาสตร์<br>
+                สาขาเทคโนโลยีและสื่อสารการศึกษา<br>
+                มหาวิทยาลัยทักษิณ
+            </p>
+
+        </div>
+
+
+
+        <!-- ความสนใจ -->
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                💻
+            </div>
+
+            <h3>
+                ความสนใจ
+            </h3>
+
+            <p>
+                เทคโนโลยีคอมพิวเตอร์<br>
+                การออกแบบสื่อการเรียนรู้<br>
+                เว็บไซต์และสื่อดิจิทัล
+            </p>
+
+        </div>
+
+
+
+        <!-- งานอดิเรก -->
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🌱
+            </div>
+
+            <h3>
+                งานอดิเรก
+            </h3>
+
+            <p>
+                ปลูกต้นไม้<br>
+                ใช้งานคอมพิวเตอร์<br>
+                เรียนรู้เทคโนโลยีใหม่ ๆ
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    © 2026 Arthit Kaewsuksai |
+    My Profile Website
+
+</footer>
+
+
+</body>
+</html>
